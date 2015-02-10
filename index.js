@@ -38,10 +38,12 @@ function BlinkReporter(runner) {
   var failures = 0;
 
   runner.on('pass', function(test){
-      if (passes % 2==1)
-          blink1.yellow(20);
-      else
-          blink1.off(20)
+      if (failures==0) {
+        if (passes % 2==1)
+            blink1.yellow(20);
+        else
+            blink1.off(20)
+      }
       passes++;
   });
 
@@ -53,7 +55,7 @@ function BlinkReporter(runner) {
 
   runner.on('end', function(){
       if (failures==0) {
-              blink1.green();
+          blink1.green();
       }
   });
 }
